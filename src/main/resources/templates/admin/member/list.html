@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 화면</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td {
+            border: solid 1px #000;
+        }
+    </style>
 </head>
 <body>
     <h1>관리자 회원 관리</h1>
     <div th:replace="/admin/main.html::admin-menu"></div>
+
+    <div class="list">
+        <table>
+            <thread>
+                <th>NO</th>
+                <th>
+                    아이디(이메일)
+                </th>
+                <th>
+                    이름
+                </th>
+                <th>
+                    연락처
+                </th>
+                <th>
+                    이메일 인증 여부
+                </th>
+                <th>
+                    가입일
+                </th>
+                <th>
+                    관리자 여부
+                </th>
+            </thread>
+            <tbody>
+                <tr th:each="member : ${list}">
+                    <td th:text="${memberStat.count}"></td>
+                    <td th:text="${member.getUserId()}"></td>
+                    <td th:text="${member.getUserName()}"></td>
+                    <td th:text="${member.getPhone()}"></td>
+                    <td>
+                        <p th:if="${member.isEmailAuthYn() eq true}">Y</p>
+                        <p th:if="${member.isEmailAuthYn() eq false}">N</p>
+                    </td>
+                    <td th:text="${member.getRegDt()}"></td>
+                    <td>
+                        <p th:if="${member.isAdminYn() eq true}">Y</p>
+                        <p th:if="${member.isAdminYn() eq false}">N</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+    </div>
 </body>
 </html>
