@@ -28,23 +28,8 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/hello")
-    public void hello(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter printWriter = response.getWriter();
-
-        String msg = "<html>" +
-                "<head>" +
-
-                "</head>" +
-                "<body>" +
-                "<p>hello</p>" +
-                "<p>fastlms website!!!!</p>" +
-                "<p>안녕하세요 !!!! ====> </p>" +
-                "</body>" +
-                "</html>";
-
-        printWriter.write(msg);
-        printWriter.close();
+    @RequestMapping("/error/denied")
+    public String errorDenied() {
+        return "error/denied";
     }
 }
